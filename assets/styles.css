@@ -141,7 +141,7 @@ h2.title {
 .mobile-menu.open { opacity: 1; pointer-events: auto; transform: translateY(0); }
 .mobile-menu a { font-family: var(--serif); font-size: clamp(30px, 8vw, 46px); color: var(--cream); padding: 8px 0; border-bottom: 1px solid rgba(255,255,255,0.12); }
 .mobile-menu a:last-child { border: 0; margin-top: 22px; }
-.mobile-menu .btn { font-family: var(--sans); }
+.mobile-menu .btn { font-family: var(--sans); font-size: 16px; width: 100%; justify-content: center; }
 
 /* ===========================================================================
    HERO
