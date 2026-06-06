@@ -515,15 +515,21 @@
             </fieldset>
           </div>
           <div class="field"><label for="f-msg">Définition de votre projet *</label><textarea id="f-msg" name="message" required placeholder="Décrivez votre projet : usage, budget, horizon, questions… Cela nous permet de vous répondre précisément."></textarea></div>
+          <!-- Honeypot anti-spam : invisible pour les humains, piège pour les bots -->
+          <div class="hp-trap" aria-hidden="true">
+            <label for="hp-website">Ne pas remplir ce champ</label>
+            <input type="text" id="hp-website" name="website" tabindex="-1" autocomplete="off" />
+          </div>
           <button type="submit" class="btn btn-primary btn-block">Envoyer ma demande
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
+          <p class="form-error" id="formError" role="alert"></p>
           <p class="form-legal">En envoyant ce formulaire, vous acceptez d'être recontacté au sujet de votre projet. Vos données ne sont utilisées que dans ce cadre.</p>
         </form>
         <div class="form-sent" id="formSent">
           <div class="ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M5 12l5 5L20 7" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
           <h3>Merci&nbsp;!</h3>
-          <p>Votre messagerie s'ouvre avec votre demande pré-remplie. Christophe vous recontacte rapidement.</p>
+          <p>Votre demande a bien été envoyée. Nous vous recontacterons rapidement.</p>
         </div>
       </div>
     </div>

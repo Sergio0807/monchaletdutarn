@@ -66,28 +66,22 @@
   var form = document.getElementById('leadForm');
   if (!form) return;
 
-  var AGENT_MAIL = 'christophe.digue@batimmo.fr';
-
-  function buildMailto(data) {
-    var subject = 'Demande de renseignements — Mon Chalet du Tarn (' + data.projet + ')';
-    var body =
-      'Bonjour Christophe,\n\nJe souhaite des renseignements sur le programme Mon Chalet du Tarn — Le Domaine du Cèdre.\n\n' +
-      'Nom : ' + data.nom + '\n' +
-      'Prénom : ' + data.prenom + '\n' +
-      'Lieu de domicile : ' + data.ville + '\n' +
-      'Téléphone : ' + data.tel + '\n' +
-      'Email : ' + data.email + '\n' +
-      'Type de projet : ' + data.projet + '\n' +
-      'Définition du projet : ' + (data.message || '—') + '\n\nMerci de me recontacter.';
-    var mailEl = document.getElementById('agentMail');
-    var to = (mailEl && mailEl.getAttribute('href') || ('mailto:' + AGENT_MAIL)).replace('mailto:', '');
-    return 'mailto:' + to + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-  }
-
   function showSent() {
     form.style.display = 'none';
     var sent = document.getElementById('formSent');
     if (sent) sent.classList.add('show');
+  }
+
+  function showError(msg) {
+    var el = document.getElementById('formError');
+    if (!el) return;
+    el.textContent = msg;
+    el.classList.add('show');
+  }
+
+  function clearError() {
+    var el = document.getElementById('formError');
+    if (el) { el.textContent = ''; el.classList.remove('show'); }
   }
 
   form.addEventListener('submit', function (e) {
@@ -115,14 +109,18 @@
     }
     if (invalid) return;
 
+    clearError();
+
+    var hp = document.getElementById('hp-website');
     var data = {
-      nom: document.getElementById('f-nom').value.trim(),
-      prenom: document.getElementById('f-prenom').value.trim(),
-      ville: document.getElementById('f-ville').value.trim(),
-      tel: document.getElementById('f-tel').value.trim(),
-      email: document.getElementById('f-email').value.trim(),
-      projet: projetEl.value,
-      message: document.getElementById('f-msg').value.trim()
+      nom:     document.getElementById('f-nom').value.trim(),
+      prenom:  document.getElementById('f-prenom').value.trim(),
+      ville:   document.getElementById('f-ville').value.trim(),
+      tel:     document.getElementById('f-tel').value.trim(),
+      email:   document.getElementById('f-email').value.trim(),
+      projet:  projetEl.value,
+      message: document.getElementById('f-msg').value.trim(),
+      website: hp ? hp.value : ''
     };
 
     var btn = form.querySelector('button[type="submit"]');
@@ -134,16 +132,16 @@
       body: JSON.stringify(data)
     })
       .then(function (res) {
-        if (!res.ok) throw new Error('HTTP ' + res.status);
-        return res.json().catch(function () { return {}; });
+        return res.json().then(function (json) {
+          if (!res.ok || json.ok === false) throw new Error(json.error || 'Erreur inconnue');
+          return json;
+        });
       })
       .then(function () {
         showSent();
       })
-      .catch(function () {
-        /* Repli : ouverture de la messagerie pré-remplie */
-        window.location.href = buildMailto(data);
-        showSent();
+      .catch(function (err) {
+        showError(err.message || 'Une erreur est survenue. Veuillez réessayer ou nous contacter par téléphone.');
       })
       .finally(function () {
         if (btn) { btn.disabled = false; if (btn.dataset.label) btn.textContent = btn.dataset.label; }
