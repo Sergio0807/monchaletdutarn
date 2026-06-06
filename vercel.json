@@ -4,7 +4,13 @@
   "trailingSlash": false,
   "headers": [
     {
-      "source": "/assets/(.*)",
+      "source": "/assets/:file.(css|js)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, no-cache, must-revalidate" }
+      ]
+    },
+    {
+      "source": "/assets/:file.(jpg|jpeg|png|webp|svg|ico|gif)",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
       ]

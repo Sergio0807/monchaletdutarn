@@ -515,8 +515,8 @@
             </fieldset>
           </div>
           <div class="field"><label for="f-msg">Définition de votre projet *</label><textarea id="f-msg" name="message" required placeholder="Décrivez votre projet : usage, budget, horizon, questions… Cela nous permet de vous répondre précisément."></textarea></div>
-          <!-- Honeypot anti-spam : invisible pour les humains, piège pour les bots -->
-          <div class="hp-trap" aria-hidden="true">
+          <!-- Honeypot anti-spam : hors-écran pour les humains, lisible par les bots -->
+          <div class="hp-trap" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none;">
             <label for="hp-website">Ne pas remplir ce champ</label>
             <input type="text" id="hp-website" name="website" tabindex="-1" autocomplete="off" />
           </div>
