@@ -158,13 +158,24 @@ h2.title {
 .hero-inner { position: relative; z-index: 1; width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 clamp(20px, 5vw, 56px) clamp(48px, 7vw, 84px); }
 .hero-accroche {
   display: block;
-  font-size: clamp(11px, 1.1vw, 13px);
-  font-variant: small-caps;
-  letter-spacing: 0.18em;
-  color: #f6ead4;
-  font-weight: 600;
-  text-shadow: 0 1px 8px rgba(0,0,0,0.6);
-  margin-bottom: 4px;
+  position: relative;
+  padding-top: 16px;
+  font-size: clamp(14px, 1.45vw, 18px);
+  text-transform: uppercase;
+  letter-spacing: 0.28em;
+  color: #e8d4a0;
+  font-weight: 700;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.85), 0 3px 18px rgba(0,0,0,0.55);
+  margin-bottom: 8px;
+}
+.hero-accroche::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 30px;
+  height: 1px;
+  background: rgba(232,212,160,0.72);
 }
 .hero h1 {
   font-family: var(--serif); font-weight: 500;
