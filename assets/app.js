@@ -140,8 +140,8 @@
       .then(function () {
         showSent();
       })
-      .catch(function (err) {
-        showError(err.message || 'Une erreur est survenue. Veuillez réessayer ou nous contacter par téléphone.');
+      .catch(function () {
+        showError('Une erreur est survenue lors de l\'envoi de votre demande. Veuillez réessayer ultérieurement.');
       })
       .finally(function () {
         if (btn) { btn.disabled = false; if (btn.dataset.label) btn.textContent = btn.dataset.label; }

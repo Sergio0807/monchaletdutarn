@@ -62,6 +62,12 @@ export default async function handler(req, res) {
   const projetLabel = PROJET_LABELS[projet] || esc(projet);
   const subject = `Nouvelle demande — Mon Chalet du Tarn · ${projetLabel}`;
 
+  const sentAt = new Date().toLocaleString('fr-FR', {
+    timeZone: 'Europe/Paris',
+    dateStyle: 'full',
+    timeStyle: 'short',
+  });
+
   try {
     const r = await fetch('https://api.resend.com/emails', {
       method: 'POST',
@@ -74,7 +80,7 @@ export default async function handler(req, res) {
         to: RECIPIENTS,
         reply_to: email,
         subject,
-        html: buildEmail({ nom, prenom, ville, tel, email, projet: projetLabel, message }),
+        html: buildEmail({ nom, prenom, ville, tel, email, projet: projetLabel, message, sentAt }),
       }),
     });
 
@@ -91,7 +97,7 @@ export default async function handler(req, res) {
   }
 }
 
-function buildEmail({ nom, prenom, ville, tel, email, projet, message }) {
+function buildEmail({ nom, prenom, ville, tel, email, projet, message, sentAt }) {
   const msgHtml = esc(message).replace(/\n/g, '<br>');
   const villeRow = ville ? `
             <tr>
@@ -210,11 +216,16 @@ function buildEmail({ nom, prenom, ville, tel, email, projet, message }) {
 
           <!-- Message -->
           <div style="background:#f8f6f1;border-left:3px solid #b27a47;
-                      padding:18px 22px;border-radius:0 4px 4px 0;margin-bottom:32px;">
+                      padding:18px 22px;border-radius:0 4px 4px 0;margin-bottom:28px;">
             <p style="margin:0;font-size:15px;color:#2c3528;line-height:1.8;">
               ${msgHtml}
             </p>
           </div>
+
+          <!-- Date de la demande -->
+          <p style="margin:0 0 28px;font-size:12px;color:#b0c09a;text-align:right;">
+            Demande reçue le ${esc(sentAt)}
+          </p>
 
         </td>
       </tr>
