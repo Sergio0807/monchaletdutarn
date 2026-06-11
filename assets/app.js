@@ -147,4 +147,32 @@
         if (btn) { btn.disabled = false; if (btn.dataset.label) btn.textContent = btn.dataset.label; }
       });
   });
+
+  /* — Cahier des charges : modale PDF — */
+  var cdcOverlay  = document.getElementById('cdcOverlay');
+  var cdcFrame    = document.getElementById('cdcFrame');
+  var openCdcBtn  = document.getElementById('openCdc');
+  var cdcCloseBtn = document.getElementById('cdcClose');
+  var cdcBackdrop = document.getElementById('cdcBackdrop');
+  if (cdcOverlay && openCdcBtn) {
+    function openCdcModal() {
+      if (!cdcFrame.src || cdcFrame.src === window.location.href) {
+        cdcFrame.src = 'assets/cahier-des-charges.pdf';
+      }
+      cdcOverlay.hidden = false;
+      document.body.style.overflow = 'hidden';
+      cdcCloseBtn.focus();
+    }
+    function closeCdcModal() {
+      cdcOverlay.hidden = true;
+      document.body.style.overflow = '';
+      openCdcBtn.focus();
+    }
+    openCdcBtn.addEventListener('click', openCdcModal);
+    cdcCloseBtn.addEventListener('click', closeCdcModal);
+    cdcBackdrop.addEventListener('click', closeCdcModal);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && !cdcOverlay.hidden) closeCdcModal();
+    });
+  }
 })();

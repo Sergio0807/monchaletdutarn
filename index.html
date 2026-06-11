@@ -77,7 +77,7 @@
   <div class="domaine-bg"><img src="assets/domaine-allee.jpg" alt="Allée de platanes menant à l'accueil du Domaine du Cèdre" /></div>
   <div class="domaine-inner reveal">
     <span class="eyebrow">Le Domaine du Cèdre</span>
-    <h2>Un domaine établi,<br /><em>pas une simple promesse.</em></h2>
+    <h2>Un domaine établi,<br /><em>pas une simple promesse,<br />ouvert toute l'année.</em></h2>
     <p class="domaine-lead">Ici, vous n'investissez pas sur plan. Édifié depuis 1998, le Domaine du Cèdre bénéficie de plusieurs décennies d'existence : un parc structuré et éprouvé, 56 lots existants, une piscine chauffée, un golf 9 trous attenant et un cadre arboré pleinement opérationnel. Une nouvelle extension de 9 parcelles avec terrain privatif vient s'y ajouter.</p>
     <div class="domaine-stats">
       <div class="st"><b>56</b><span>lots déjà existants</span></div>
@@ -85,8 +85,44 @@
       <div class="st"><b>1,5 ha</b><span>de parc boisé</span></div>
       <div class="st"><b>4 saisons</b><span>ouvert à l'année</span></div>
     </div>
+    <div style="margin-top:28px">
+      <button class="btn btn-light" id="openCdc" style="font-size:14px;padding:10px 20px;gap:8px">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" width="16" height="16" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke-linecap="round" stroke-linejoin="round"/><polyline points="14 2 14 8 20 8" stroke-linecap="round" stroke-linejoin="round"/><line x1="16" y1="13" x2="8" y2="13" stroke-linecap="round"/><line x1="16" y1="17" x2="8" y2="17" stroke-linecap="round"/></svg>
+        Cahier des charges
+      </button>
+    </div>
   </div>
 </section>
+
+<!-- ===================== MODALE — Cahier des charges ===================== -->
+<div class="cdc-overlay" id="cdcOverlay" role="dialog" aria-modal="true" aria-label="Cahier des charges — Le Domaine du Cèdre" hidden>
+  <div class="cdc-backdrop" id="cdcBackdrop"></div>
+  <div class="cdc-box">
+    <div class="cdc-header">
+      <span class="cdc-title">Cahier des charges — Le Domaine du Cèdre</span>
+      <div class="cdc-header-actions">
+        <a href="assets/cahier-des-charges.pdf" download class="btn btn-ghost" style="padding:8px 16px;font-size:13.5px;gap:7px">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15" height="15" aria-hidden="true"><path d="M12 15V3M8 11l4 4 4-4" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 17v2a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-2" stroke-linecap="round"/></svg>
+          Télécharger
+        </a>
+        <button class="cdc-close" id="cdcClose" aria-label="Fermer la modale">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="17" height="17" aria-hidden="true"><path d="M18 6L6 18M6 6l12 12" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="cdc-body">
+      <iframe id="cdcFrame" title="Cahier des charges — Le Domaine du Cèdre" src="" loading="lazy"></iframe>
+      <div class="cdc-mobile-fallback">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="40" height="40" style="color:var(--ink-faint)"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" stroke-linecap="round" stroke-linejoin="round"/><polyline points="14 2 14 8 20 8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <p>Visualisation PDF non disponible sur mobile.</p>
+        <a href="assets/cahier-des-charges.pdf" download class="btn btn-primary" style="gap:8px">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="16" height="16" aria-hidden="true"><path d="M12 15V3M8 11l4 4 4-4" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 17v2a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-2" stroke-linecap="round"/></svg>
+          Télécharger le cahier des charges
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- ===================== 2 · L'OPPORTUNITÉ ===================== -->
 <section class="section band-cream" id="opportunite" data-screen-label="L'opportunité">
